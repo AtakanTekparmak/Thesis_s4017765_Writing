@@ -99,6 +99,7 @@ o^*, & \text{{otherwise}}
 
 where \textit{random\_choice()} randomly chooses between 0 and 1. The agent then invokes the \textbf{decide} function of the corresponding lower-order agent to get the decision $d_l$ of the lower-order agent. Then, the second order decision $\mathbf{d_2}$  is calculated using the equation:
 
+\label{eq:second-order-decide}
 \[
 d_2 = (d_l + 1) \mod 23.
 \]
