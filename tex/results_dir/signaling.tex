@@ -1,0 +1,407 @@
+For the tables presented in this subsection, to denote the inital population, a similar format of:
+
+\begin{equation}
+    x_{s_{0}} / y_{s_{1}} / z_{s_{2}} / a_{r_{0}} / b_{r_{1}} / c_{r_{2}}
+\end{equation}
+
+\noindent is used, where $x$, $y$, and $z$ are the number of 0, 1, and 2 order signaling agents, and $a$, $b$, and $c$ are the number of 0, 1, and 2 order receiving agents respectively. The $s$ and $r$ subscripts denote signaling and receiving agents in an understandable format.
+
+\subsubsection{Default Equal Population}
+
+The default equal population consisted of 100 agents of each order, with each order being split into half signaling and half receiving agents. The end results are shown in \hyperref[table:sig-default-equal]{Table 3.5}, where the signaling agents are on the left and the receiving agents are on the right and are labelled as such.   
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$50_{s_{0}}/50_{s_{1}}/50_{s_{2}}/50_{r_{0}}/50_{r_{1}}/50_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 4.525   & 0.252    & 4.550   & 0.245   \\
+    1     & 13.896  & 17.429   & 78.209  & 1.043   \\
+    2     & 58.253  & 24.377   & 69.144  & 6.549   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the default equal population for the signaling simulation.}
+    \label{table:sig-default-equal}
+\end{table}
+
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-default-equal-overall]{Table 3.6}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 4.538   & 0.248    \\
+    1     & 46.053  & 9.236    \\
+    2     & 63.699  & 15.463   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the default equal population for the signaling simulation.}
+    \label{table:sig-default-equal-overall}
+\end{table}
+
+\subsubsection{Zero Order Over and Under Abundance}
+
+The zero order over and under-abundance scenarios are the same as the zero order over and under-abundance scenarios in the non-signaling simulation, with each order being split into half signaling and half receiving agents. The end results are shown in \hyperref[table:sig-zero-order-simple]{Table 3.7}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$75_{s_{0}}/37_{s_{1}}/37_{s_{2}}/75_{r_{0}}/38_{r_{1}}/38_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 4.026   & 0.293    & 4.039   & 0.279   \\
+    1     & 15.140  & 21.570   & 86.602  & 1.175   \\
+    2     & 55.402  & 34.814   & 88.039  & 3.657   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \multicolumn{5}{|c|}{$30_{s_{0}}/60_{s_{1}}/60_{s_{2}}/30_{r_{0}}/60_{r_{1}}/60_{r_{2}}$} \\
+        \hline
+        \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+        \hline
+        Order & AOAS & Std Dev & AOAS & Std Dev \\
+        \hline
+        0     & 5.143   & 0.252    & 5.127   & 0.227   \\
+        1     & 11.889  & 13.713   & 71.605  & 0.939   \\
+        2     & 58.529  & 17.660   & 59.255  & 6.802   \\
+        \hline
+        \end{tabular}
+    \caption{The average order agent scores for each order in the zero order over and under-abundance scenarios for the signaling simulation}
+    \label{table:sig-zero-order-simple}
+\end{table}
+
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-zero-order-overall]{Table 3.8}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$75_{s_{0}}/37_{s_{1}}/37_{s_{2}}/75_{r_{0}}/38_{r_{1}}/38_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 4.033   & 0.286    \\
+    1     & 50.871  & 11.372   \\
+    2     & 71.721  & 18.921   \\
+    \hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$30_{s_{0}}/60_{s_{1}}/60_{s_{2}}/30_{r_{0}}/60_{r_{1}}/60_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 5.135   & 0.240    \\
+    1     & 41.747  & 7.326   \\
+    2     & 58.892  & 12.231   \\
+    \hline
+\end{tabular}
+\caption{The average order agent scores for each order in the zero order over and under-abundance scenarios for the signaling simulation}
+\label{table:sig-zero-order-overall}
+\end{table}
+
+\subsubsection{First Order Over and Under Abundance}
+
+The first order over and under-abundance scenarios are the same as the first order over and under-abundance scenarios in the non-signaling simulation, with each order being split into half signaling and half receiving agents. The end results are shown in \hyperref[table:sig-first-order-simple]{Table 3.9}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$37_{s_{0}}/75_{s_{1}}/37_{s_{2}}/38_{r_{0}}/75_{r_{1}}/38_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 3.991   & 0.269    & 3.972   & 0.263   \\
+    1     & 13.860  & 18.372   & 86.269  & 1.062   \\
+    2     & 57.635  & 32.302   & 70.885  & 10.415   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \multicolumn{5}{|c|}{$60_{s_{0}}/30_{s_{1}}/60_{s_{2}}/60_{r_{0}}/30_{r_{1}}/60_{r_{2}}$} \\
+        \hline
+        \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+        \hline
+        Order & AOAS & Std Dev & AOAS & Std Dev \\
+        \hline
+        0     & 4.526   & 0.269    & 4.532   & 0.244   \\
+        1     & 13.275  & 17.989   & 71.823  & 0.901   \\
+        2     & 49.782  & 24.620   & 78.312  & 2.252   \\
+        \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the first order over and under-abundance scenarios for the signaling simulation}
+    \label{table:sig-first-order-simple}
+\end{table}
+
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-first-order-overall]{Table 3.10}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \multicolumn{3}{|c|}{$37_{s_{0}}/75_{s_{1}}/37_{s_{2}}/38_{r_{0}}/75_{r_{1}}/38_{r_{2}}$} \\
+        \hline
+        \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+        \hline
+        Order & AOAS & Std Dev \\
+        \hline
+        0     & 3.982   & 0.266    \\
+        1     & 50.064  & 9.717   \\
+        2     & 64.260  & 13.426   \\
+        \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \multicolumn{3}{|c|}{$60_{s_{0}}/30_{s_{1}}/60_{s_{2}}/60_{r_{0}}/30_{r_{1}}/60_{r_{2}}$} \\
+        \hline
+        \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+        \hline
+        Order & AOAS & Std Dev \\
+        \hline
+        0     & 4.529   & 0.256    \\
+        1     & 42.549  & 9.445   \\
+        2     & 64.047  & 13.436   \\
+        \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the first order over and under-abundance scenarios for the signaling simulation}
+    \label{table:sig-first-order-overall}
+\end{table}
+
+\subsubsection{Second Order Over and Under Abundance}
+
+The second order over and under-abundance scenarios are the same as the second order over and under-abundance scenarios in the non-signaling simulation, with each order being split into half signaling and half receiving agents. The end results are shown in \hyperref[table:sig-second-order-simple]{Table 3.11}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$37_{s_{0}}/37_{s_{1}}/75_{s_{2}}/38_{r_{0}}/38_{r_{1}}/75_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 5.269    & 0.212     & 5.301     & 0.210   \\
+    1     & 14.202   & 16.219    & 60.157    & 0.774   \\
+    2     & 53.502   & 11.432    & 64.183    & 1.449   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$60_{s_{0}}/60_{s_{1}}/30_{s_{2}}/60_{r_{0}}/60_{r_{1}}/30_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 4.015   & 0.301    & 4.003   & 0.293   \\
+    1     & 12.944  & 19.765   & 92.317  & 1.313   \\
+    2     & 59.171  & 37.668   & 83.654  & 9.141   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the second order over and under-abundance scenarios for the signaling simulation}
+    \label{table:sig-second-order-simple}
+\end{table}
+    
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-second-order-overall]{Table 3.12}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$37_{s_{0}}/37_{s_{1}}/75_{s_{2}}/38_{r_{0}}/38_{r_{1}}/75_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 5.285   & 0.211    \\
+    1     & 37.179  & 8.497   \\
+    2     & 58.843  & 6.441   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$60_{s_{0}}/60_{s_{1}}/30_{s_{2}}/60_{r_{0}}/60_{r_{1}}/30_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 4.009   & 0.297    \\
+    1     & 52.630  & 10.539   \\
+    2     & 71.413  & 23.404   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the second order over and under-abundance scenarios for the signaling simulation}
+    \label{table:sig-second-order-overall}
+\end{table}
+
+\subsubsection{Signaling and Receiving Over-Abundance}
+
+In the signaling and receving over-abundance scenarios, the orders have equal distribution of agents, like the default equal population scenario. The difference is that there is a $70/30$ ratio between signaling and receiving agents, and the inverse. The population percentages are $70_{s_{0}}/70_{s_{1}}/70_{s_{2}}/30_{r_{0}}/30_{r_{1}}/30_{r_{2}}$ and $30_{s_{0}}/30_{s_{1}}/30_{s_{2}}/70_{r_{0}}/70_{r_{1}}/70_{r_{2}}$. The end results are shown in \hyperref[table:sig-over-abundance]{Table 3.13}.
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$70_{s_{0}}/70_{s_{1}}/70_{s_{2}}/30_{r_{0}}/30_{r_{1}}/30_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 5.125     & 0.275    & 5.123      & 0.284   \\
+    1     & 11.854    & 16.420   & 107.980    & 1.433   \\
+    2     & 66.860    & 45.308   & 73.014     & 27.055   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$30_{s_{0}}/30_{s_{1}}/30_{s_{2}}/70_{r_{0}}/70_{r_{1}}/70_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 3.761   & 0.263    & 3.766   & 0.269   \\
+    1     & 13.943  & 18.462   & 48.878  & 0.636   \\
+    2     & 42.050  & 9.681    & 79.185  & 17.140   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the singaling and receiving over-abundance scenarios for the signaling simulation}
+    \label{table:sig-over-abundance}
+\end{table}
+
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-overall]{Table 3.14}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$70_{s_{0}}/70_{s_{1}}/70_{s_{2}}/30_{r_{0}}/30_{r_{1}}/30_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 5.124   & 0.279    \\ 
+    1     & 59.917  & 8.926   \\
+    2     & 69.937  & 36.182   \\ 
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$30_{s_{0}}/30_{s_{1}}/30_{s_{2}}/70_{r_{0}}/70_{r_{1}}/70_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 3.764   & 0.266    \\
+    1     & 31.410  & 9.549   \\ 
+    2     & 60.618  & 13.411   \\ 
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the signaling and receiving over-abundance scenarios for the signaling simulation}
+    \label{table:sig-overall}
+\end{table}
+
+
+To further see the effects of the over-abundance scenarios, we have simualated the effects of the $90/10$ ratio, which are the population percentages $90_{s_{0}}/90_{s_{1}}/90_{s_{2}}/10_{r_{0}}/10_{r_{1}}/10_{r_{2}}$ and $10_{s_{0}}/10_{s_{1}}/10_{s_{2}}/90_{r_{0}}/90_{r_{1}}/90_{r_{2}}$. The end results are shown in \hyperref[table:sig-over-abundance-90]{Table 3.15}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$90_{s_{0}}/90_{s_{1}}/90_{s_{2}}/10_{r_{0}}/10_{r_{1}}/10_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 5.600     & 0.336    & 5.596      & 0.329   \\
+    1     & 13.288    & 23.429   & 138.440    & 1.588   \\
+    2     & 93.151    & 58.878   & 75.254     & 45.379   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{5}{|c|}{$10_{s_{0}}/10_{s_{1}}/10_{s_{2}}/90_{r_{0}}/90_{r_{1}}/90_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Signaling} & \multicolumn{2}{|c|}{Receiving} \\
+    \hline
+    Order & AOAS & Std Dev & AOAS & Std Dev \\
+    \hline
+    0     & 3.662   & 0.308    & 3.585   & 0.348   \\
+    1     & 8.304   & 7.332    & 18.797  & 0.481   \\
+    2     & 19.630  & 0.500    & 54.305  & 37.433   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the signaling and receiving over-abundance $90\%$ scenarios for the signaling simulation}
+    \label{table:sig-over-abundance-90}
+\end{table}
+
+The overall order-wise results, which groups signaling and receiving agents together, are shown in \hyperref[table:sig-overall-90]{Table 3.16}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$90_{s_{0}}/90_{s_{1}}/90_{s_{2}}/10_{r_{0}}/10_{r_{1}}/10_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 5.598   & 0.333    \\
+    1     & 75.864  & 12.509  \\ 
+    2     & 84.203  & 52.129   \\
+    \hline
+    \end{tabular}
+    \qquad
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \multicolumn{3}{|c|}{$10_{s_{0}}/10_{s_{1}}/10_{s_{2}}/90_{r_{0}}/90_{r_{1}}/90_{r_{2}}$} \\
+    \hline
+    \multicolumn{1}{|c|}{} & \multicolumn{2}{|c|}{Overall} \\
+    \hline
+    Order & AOAS & Std Dev \\
+    \hline
+    0     & 3.603   & 0.328    \\
+    1     & 13.551  & 3.906   \\
+    2     & 36.968  & 18.966   \\
+    \hline
+    \end{tabular}
+    \caption{The average order agent scores for each order in the signaling and receiving over-abundance $90\%$ scenarios for the signaling simulation}
+    \label{table:sig-overall-90}
+\end{table}

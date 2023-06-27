@@ -1,0 +1,158 @@
+In the regular simulation, which is a basic n-player version of the Mod Game with Theory of Mind agents, three different processes are performed in each iteration/round of the simulation. These processes are:
+\begin{enumerate}
+    \item The agents \textbf{decide} based on their beliefs,
+    \item The agent scores are updated, and
+    \item The agents beliefs are \textbf{update}d.
+\end{enumerate}
+
+The \textbf{decide} and \textbf{update} processes are performed differently for each level of Theory of Mind. However, there are similarities between the processes, as per the requirement for a higher level Theory of Mind: accurately modeling the lower levels of Theory of Mind. How each order of Theory of Mind agent performs these processes is described below.
+
+\subsubsection{Zero Order Theory of Mind Agent}
+
+The Zero Order Theory of Mind agent is the simplest agent in the simulation. It does not have any Theory of Mind, and thus does not model the other agents in the simulation. It simply chooses an action based on its own 1-dimensional belief vector, which is updated based on the actions of the other agents in the simulation. The \textbf{decide} function can be described as follows:
+
+Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
+
+\[
+i^* = \arg\max_i b_i, \quad i = 0, 2, \ldots, 22.
+\]
+
+To incorporate exploration, a random action is chosen with probability $\epsilon$ using the epsilon-greedy strategy. The function employs the check\_epsilon function to determine if a random choice should be made:
+
+\[
+\begin{aligned}
+\text{{decide}} =
+\begin{cases}
+\text{{random\_choice()}}, & \text{{if }} \text{{check\_epsilon()}} \\
+i^* + 1 \mod 23, & \text{{otherwise}}
+\end{cases}
+\end{aligned}
+\]
+
+Here, $\text{{random\_choice()}}$ generates a random action, and $i^* + 1 \mod 23$ ensures that the action is within the range of 0 to 22.
+
+The \textbf{update} function of the Zero order Theory of Mind Agent updates the belief vector, using the actions of other agents $\mathbf{a} = [a_0, a_1, \ldots, a_{n-1}]$ where $n$ is the number of agents, as follows: 
+
+\label{eq:zero-order-update}
+Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in action $i$. First, the function computes the accumulated sum of beliefs, denoted as $A$, using the equation:
+
+\[
+A = \sum_{i=0}^{22} b_i.
+\]
+
+Next, it calculates the learning rate $\alpha$ as:
+
+\[
+\alpha = \frac{{1 - \text{{LEARNING\_SPEED}}}}{{A}}.
+\]
+
+The learning rate $\alpha$ represents the proportion of belief update for each action. A higher accumulated sum of beliefs leads to a smaller learning rate, promoting stability and slower belief adjustments. Finally, the function updates each belief $b_i$ by multiplying it with the learning rate $\alpha$, except for the belief corresponding to the chosen action. The updated belief vector is given by:
+
+\[
+\begin{aligned}
+b_i & = b_i \times \alpha, \quad i = 0, 1, \ldots, 22, \quad i \neq a_j, \\
+b_{a_{j}} & = b_{a_{j}} + \text{{LEARNING\_SPEED}},
+\end{aligned}
+\]
+
+where $a_j$ represents an action from the actions list for that round. This process is repeated for each action in the actions list. The update equation ensures that the belief corresponding to the chosen action is increased by the predefined learning speed $\text{{LEARNING\_SPEED}}$, while the other beliefs are scaled down proportionally.
+
+\subsubsection{First Order Theory of Mind Agent}
+
+The First Order Theory of Mind agent is a more complex agent than the Zero Order Theory of Mind agent. It models the other agents in the simulation as Zero Order Theory of Mind agents, uses that model in deciding and updating. 
+
+The \textbf{decide} function of the First Order Theory of Mind Agent models the decision-making process of a lower-order agent (Zero order Theory of Mind Agent) and acts greedily based on that model. First, the function invokes the \textbf{decide} function of the lower-order agent, which determines the action the lower-order agent would choose based on its beliefs and decision-making strategy. Let $\mathbf{d_0}$ represent the decision made by the lower-order agent. Next, the function makes its decision $\mathbf{d_1}$ by applying a greedy strategy based on the lower-order decision:
+
+\[
+d_1 = (d_0 + 1) \mod 23.
+\]
+
+Because the First Order agent using a Zero Order agent to decide, the \textbf{update} procedure is just updating that Zero Order agent, as described in the previous subsection.
+
+\subsubsection{Second Level Theory of Mind Agent}
+
+The Second Order Theory of Mind agent is very similar to a First Order Theory of Mind agent, with the main difference being that it has another dimension of reasoning, namely it's beliefs on which order of Theory of Mind is more present in the population, Zero Order or First Order. It then uses this belief to decide which lower order agent to model and act upon. 
+
+The \textbf{decide} function of the Second Order Theory of Mind Agent implements a greedy decision-making process based on models of the other agents that it has. First, the function selects an order that it believes to be more present in the equation. Let $\mathbf{b_o} = [b_{o_{1}}, b_{o_{2}}]$ be the order belief vector. Then, the intermediary order-decision $o^*$ is:
+
+\[
+\begin{aligned}
+\text{{$o^*$}} =
+\begin{cases}
+0, & \text{{if }} b_{o_{1}} > b_{o_{2}}\\
+1, & \text{{otherwise}}
+\end{cases}
+\end{aligned}
+\]
+
+In the order decision procedure there is epsilon-based stochasticity as well, the final order decision $o$ is selected with:
+
+\[
+\begin{aligned}
+\text{{$o$}} =
+\begin{cases}
+\text{{random\_choice()}}, & \text{{if }} \text{{check\_epsilon()}} \\
+o^*, & \text{{otherwise}}
+\end{cases}
+\end{aligned}
+\]
+
+where \textit{random\_choice()} randomly chooses between 0 and 1. The agent then invokes the \textbf{decide} function of the corresponding lower-order agent to get the decision $d_l$ of the lower-order agent. Then, the second order decision $\mathbf{d_2}$  is calculated using the equation:
+
+\[
+d_2 = (d_l + 1) \mod 23.
+\]
+
+
+The \textbf{update} function of the Second Order Theory of Mind Agent updates the beliefs of the zero order, first order, and second order agents based on the chosen action. First, the function retrieves the decisions made by the zero order and first order agents using their respective \textbf{decide} functions. Let $\mathbf{d_0}$ and $\mathbf{d_2}$ represent the zero order and first order decisions, respectively. The higher order decisions $\mathbf{d_3}$ and $\mathbf{d_4}$ are calculated using the equations:
+
+\[
+d_3 = (d_0 + 1) \mod 23, \quad d_4 = (d_2 + 1) \mod 23.
+\]
+
+Next, the function updates the beliefs of the zero order and first order agents by invoking their respective \textbf{update} functions. The function then updates the order beliefs vector based on the chosen action. If the chosen action matches either the zero order higher decision $\mathbf{d_3}$ or the first order higher decision $\mathbf{d_4}$, the order beliefs $\mathbf{b_o}$ are updated as follows:
+
+Let $a$ be the chosen action. The sum of the order beliefs is calculated as $s = b_0 + b_1$, and the value of $s$ is used to calculate an accumulation factor $f$:
+
+\[
+f = \frac{{1.0 - \text{{LEARNING\_SPEED}}}}{s}.
+\]
+
+The belief values in the order beliefs vector are scaled down by multiplying each belief $b_i$ by the accumulation factor $f$. If $a$ matches the zero order higher decision $\mathbf{d_3}$, the belief in the majority of zero order agents is updated by:
+
+\[
+b_0 = b_0 + \text{{LEARNING\_SPEED}}.
+\]
+
+Otherwise, if $a$ matches the first order higher decision $\mathbf{d_4}$, the belief in the majority of first order agents is updated by:
+
+\[
+b_1 = b_1 + \text{{LEARNING\_SPEED}}.
+\]
+
+\subsubsection{Simulation}
+
+The non-signaling simulation will have a total of 7 different initial population configurations to be simulated, which are listed in \hyperref[tab:reg-population-table]{Table 2.1}. These population configurations are chosen specifically because for each ToM order it investigates the effects of:
+\begin{itemize}
+    \item The Equal Population: $\{33\%,33\%,33\%\}$,
+    \item The Surplus of an Order: $\{50\%,25\%,25\%\}$ and 
+    \item The Deficiency in an Order: $\{20\%,40\%,40\%\}$
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}0\\ Order\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}1st\\ Order\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}2nd\\ Order\end{tabular}} \\ \hline
+\multicolumn{1}{c|}{33}                                                 & \multicolumn{1}{c|}{33}                                                  & 33                                                                       \\
+\multicolumn{1}{c|}{50}                                                 & \multicolumn{1}{c|}{25}                                                  & 25                                                                       \\
+\multicolumn{1}{c|}{20}                                                 & \multicolumn{1}{c|}{40}                                                  & 40                                                                       \\
+\multicolumn{1}{c|}{25}                                                 & \multicolumn{1}{c|}{50}                                                  & 25                                                                       \\
+\multicolumn{1}{c|}{40}                                                 & \multicolumn{1}{c|}{20}                                                  & 40                                                                       \\
+\multicolumn{1}{c|}{25}                                                 & \multicolumn{1}{c|}{25}                                                  & 50                                                                       \\
+\multicolumn{1}{c|}{40}                                                 & \multicolumn{1}{c|}{40}                                                  & 20                                                                       \\
+   & &                
+\end{tabular}
+\caption{The inital population configurations listed by how much each order of ToM is present in the population percentage-wise}
+\label{tab:reg-population-table}
+\end{table}

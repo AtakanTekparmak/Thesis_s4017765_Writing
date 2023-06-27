@@ -1,0 +1,15 @@
+\section{Methodology}\label{sec:methodology}
+
+The main experiment methodology of this paper will involve simulating the Mod Game with and without signaling, using artificial agents. Different initial populations of agents will be used in the simulation, with varying levels of Theory of Mind as described in \cite{premack1978does} and \cite{liddle2006higher}. The behavior of the agents will be observed and analyzed through and across the simulations to investigate the effect of different order configurations and the addition of signaling on the behavior of Theory of Mind agents in the Mod Game, as described in \cite{veltman2019training} and \cite{frey2013cyclic}.
+
+To begin, a computer program will be created to simulate the Mod Game with and without signaling. The program will be written in the Python \citep{van1995python} programming language, following the implementation of the Mod Game as described in \cite{veltman2019training}. The program will be designed to simulate the game with any given number of agents (initial population configurations), and will include functionality for agents to signal and receive signals in the signaling simulation, on top of the general ability of being able to update their beliefs and intentions at every iteration/round that is present in the non-signaling version.
+
+The simulation will be run multiple times, each with a different initial population of agents. The initial populations will be varied in terms of the levels of Theory of Mind of the agents, as described in \cite{de2013much}. Each initial configuration of agents will be simulated 10 times and their results will be aggregated to obtain more sound results. For this version of the Mod Game, we chose $m = 22$.
+
+\subsection{The Regular Simulation}
+
+\input{tex/methodology_dir/non_signaling}
+
+\subsection{The Signaling Simulation}
+
+\input{tex/methodology_dir/signaling}

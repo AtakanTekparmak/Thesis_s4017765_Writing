@@ -1,0 +1,120 @@
+\subsubsection{Default Equal Population}
+
+The default equal population consisted of 100 agents for each order, with total equality between populations with different orders of Theory of Mind. The end results are shown in \hyperref[table:non-sig-default-equal-simple]{Table 3.1}, in which the \hyperref[eq:aoas]{AOAS} is shown for each order, with their respective standard deviations. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Order & AOAS & Std Dev \\ \hline
+0     & 2.475 & 0.341   \\
+1     & 83.448 & 0.814  \\
+2     & 103.422 & 18.307 \\ \hline
+\end{tabular}
+\caption{The average order agent scores for each order in the the default equal population}
+\label{table:non-sig-default-equal-simple}
+\end{table}
+
+The results show that the zero order agents, due to them having no Theory of Mind, have the lowest AOAS, $\mathbf{2.475}$, with a fairly low standard deviation. The first order agents have the 2nd highest AOAS, $\mathbf{83.448}$, with even lower standard deviation considering the higher score. The second order agents have the highest AOAS, $\mathbf{103.422}$, but with also the highest standard deviation, which is expected due to the higher variance in the decision-making of second order agents as they employ an extra set of beliefs about the predominant order of the population. The comparatively lower standard deviation of the first order agents might be due to the fact that they are kind of a generalization of the zero order decision-making process. These results indicate that in the current scenario with the default equal population, the second order agents are the most successful, followed by the first order agents, and then the zero order agents. The score difference between orders is $(\mathbf{sd^0_1 = 80.973}, \mathbf{sd^1_2 = 19.974})$, which indicates that the competitive advantage of the second order agents over the first order agents is not as high as the competitive advantage of the first order agents over the zero order agents. This score difference will also be used as baseline for comparison with the other initial population configurations.
+
+\subsubsection{Zero Order Over and Under Abundance}
+
+The zero order over-abundance scenario (percentages shown in the second row of \hyperref[tab:reg-population-table]{Table 2.1}) consisted of 150 zero order agents and 75 first and 2nd order agents each. The zero order under-abundance scenario (percentages shown in the third row of \hyperref[tab:reg-population-table]{Table 2.1}) consisted of 60 zero order agents and 120 first and 2nd order agents each. The end results are shown in \hyperref[table:non-sig-zero-order-simple]{Table 3.2}, which has two sub-tables in the same format as \hyperref[table:non-sig-default-equal-simple]{Table 3.1}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Over-abundance ($150_{0}$/$75_{1}$/$75_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.453   & 0.352   \\
+1     & 124.034 & 1.250   \\
+2     & 109.063 & 13.018  \\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Under-abundance ($60_{0}$/$120_{1}$/$120_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.473   & 0.378   \\
+1     & 51.096  & 0.531   \\
+2     & 99.207  & 43.861  \\
+\hline
+\end{tabular}
+\caption{The average order agent scores for each order in the over-abundance and under-abundance scenarios, where the population is in the format $x_{0}$/$y_{1}$/$z_{2}$ for zero, first, and second order agents.}
+\label{table:non-sig-zero-order-simple}
+\end{table}
+
+The results show that when there are more zero order agents, the first order agents have more agents to gain scores from and they do. The score difference between orders is $(\mathbf{sd^0_1 = 121.581}, \mathbf{sd^1_2 = -14.971})$, which indicates a drastic advantage shift to first order agents. Compared to the default equal population score difference, the differences between the first order and the zero order increased by $\mathbf{40.608}$, while the difference between the second order and the first order decreased by $\mathbf{33.945}$. This is in line with our expectations, as the first order agents are more efficient at gaining scores from zero order agents than second order agents. When there are less zero order agents, the first order agents have less agents to gain scores from and they do here too. The score difference between orders is $(\mathbf{sd^0_1 = 48.623}, \mathbf{sd^1_2 = 48.111})$, which indicates an even more advantageous scenario for second order agents. Compared to the default equal population score difference, the differences between the first order and the zero order decreased by $\mathbf{32.350}$, while the difference between the second order and the first order increased by $\mathbf{28.137}$. 
+
+\subsubsection{First order Over and Under Abundance}
+
+The 1st order over and under-abundance scenarios are given the population configurations $75_{0}$/$150_{1}$/$75_{2}$ and $120_{0}$/$60_{1}$/$120_{2}$. The results are shown in \hyperref[table:non-sig-first-order-simple]{Table 3.3}, in the same format as \hyperref[table:non-sig-zero-order-simple]{Table 3.2}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Over-abundance ($75_{0}$/$150_{1}$/$75_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.473    & 0.379    \\
+1     & 63.203   & 0.650    \\
+2     & 107.780  & 41.247   \\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Under-abundance ($120_{0}$/$60_{1}$/$120_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.458   & 0.341  \\
+1     & 99.705  & 0.990  \\
+2     & 101.938 & 3.497  \\
+\hline
+\end{tabular}
+\caption{The average order agent scores for each order in the over-abundance and under-abundance scenarios for the first order.}
+\label{table:non-sig-first-order-simple}
+\end{table}
+
+
+\subsubsection{Second Order Over and Under Abundance}
+
+The 2nd order over and under-abundance scenarios are in the same format as the zero and 1st order over and under-abundance scenarios, but with the 2nd order agents. The end results are shown in \hyperref[table:non-sig-second-order-simple]{Table 3.4}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Over-abundance ($75_{0}$/$75_{1}$/$150_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.477   & 0.361    \\
+1     & 63.268  & 0.582    \\
+2     & 93.250  & 27.571   \\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{Under-abundance ($120_{0}$/$120_{1}$/$60_{2}$)} \\
+\hline
+Order & AOAS & Std Dev \\
+\hline
+0     & 2.482   & 0.356   \\
+1     & 99.689  & 0.979  \\
+2     & 111.518 & 11.331 \\
+\hline
+\end{tabular}
+\caption{The average order agent scores for each order in the over-abundance and under-abundance scenarios for the second order.}
+\label{table:non-sig-second-order-simple}
+\end{table}

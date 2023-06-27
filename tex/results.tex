@@ -1,0 +1,20 @@
+\section{Results}\label{sec:results}
+
+The results section will be divided into two main subsections: the non-signaling simulation results and the signaling simulation results. Each subsection will contain the results of the simulation for each of the initial population configurations, and will be analyzed individually and inter-simulation in the discussion section to determine the effect of signaling and different order configurations on the behavior of Theory of Mind agents in the Mod Game.
+
+All the initial population configurations of the non-signaling simulation were ran on a total population of 300 agents. The simulation was ran for a total of 10 times for each initial population configuration to get mean results over 10 runs, with each being ran for 1000 epochs/iterations/rounds. To assess the results, we will use the metric Average Order Agent Score (AOAS), which is the average score of agents for a particular order, averaged over all the 10 runs: 
+
+\begin{equation}
+AOAS = \frac{1}{10} \sum_{i=1}^{10} \frac{1}{n} \sum_{j=1}^{n} s_{ij}
+\label{eq:aoas}
+\end{equation}
+
+where $s_{ij}$ is the score (over 1000 epochs) of the $j$th agent in the $i$th run, and $n$ is the total number of agents of that order. The AOAS is used to determine the average score of agents of a particular order, and is used as a uniform metric to compare the results of the different initial population configurations. Another metric that will be used is the standard deviation of each order averaged over the 10 runs, which will be used to determine the variance of the results of each order. Finally, we will use the score difference between orders to determine the difference in performance between orders and how equally the scores are distributed between orders, as a metric to try to measure cooperation. The score difference is provided with the notation $(\mathbf{sd^0_1 = X}, \mathbf{sd^1_2 = Y})$, where $X$ is the score difference between the zero and first order agents, and $Y$ is the score difference between the first and second order agents. The score difference is simply calculated by subtracting the AOAS of the lower order from the higher order. 
+
+\subsection{Non-Signaling Simulation}
+
+\input{tex/results_dir/non_signaling}
+
+\subsection{Signaling Simulation}
+
+\input{tex/results_dir/signaling}

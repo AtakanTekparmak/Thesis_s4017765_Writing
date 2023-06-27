@@ -1,0 +1,48 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+\usepackage{bachelorproject}
+
+\title{\vspace{-0.5in}{\bfseries\scshape 
+    How does the inclusion of signaling in the Mod Game affect the behavior of Theory of Mind agents?
+    } \\ 
+    \vspace{1ex} 
+    \normalsize{Bachelor's Project Thesis}\vspace{-2ex}
+}
+
+\author{
+    \normalsize{Atakan Tekparmak, s4017765, a.tekparmak@student.rug.nl,} \\ 
+    \normalsize{Supervisor: Dr H.A. de Weerd}
+}
+
+\date{\vspace{-5ex}}
+
+
+\begin{document}
+
+\twocolumn[
+  \maketitle
+  \begin{@twocolumnfalse}
+    \input{./tex/abstract.tex}
+  \end{@twocolumnfalse}
+]
+
+\thispagestyle{firststyle}
+
+% Sections
+\input{tex/introduction.tex}
+\input{tex/methodology.tex}
+\newpage
+\input{tex/results.tex}
+
+\bibliographystyle{apacite}
+\bibliography{literature_bachelorthesis}
+
+\clearpage
+
+\begin{appendices}
+    %\input{tex/appendixA.tex}
+    \newpage
+    %\input{tex/appendixB.tex}
+    \newpage
+\end{appendices}
+
+\end{document}

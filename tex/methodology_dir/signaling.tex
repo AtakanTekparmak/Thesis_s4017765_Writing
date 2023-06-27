@@ -1,0 +1,81 @@
+In the signaling simulation, the agents are divided into two groups: the signaling agents and the receiving agents. The signaling agents can signal any action (a number in the range $[0,22]$) to the receiving agents, on top of the ability to decide. The receiving agents can process transmitted signals from the signaling agents before deciding. There are five different processes performed in each round. In order, they are:
+
+\begin{enumerate}
+    \item The signaling agents decide on a signal and transmit it
+    \item The receiving agents receive the signal and process it
+    \item All agents decide on an action
+    \item The agent scores are updated  
+    \item The agent beliefs are updated
+\end{enumerate}
+
+Even though not mentioned in the itemized list above, the decision and update processes for signaling and receving agents are different. They do resemble in certain aspects as similar learning algorithms were used for conistency, but the differences are significant enough to warrant a separate explanation, which will be done in the following subsections.
+
+\subsubsection{Signaling Agents}
+
+All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), in which the first dimension represents and holds information for signals, and the second dimension represents and holds information for actions. In the decision process for all signaling agents, the agent uses the sub-array of shape (23,1), indexed by the signal, to decide on an action. How each order of ToM deals with the signal, decision and update processes are explained in the following sections.
+
+\subsubsubsection{2.2.1.1}{Zero Order Signaling Agent}
+
+The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the belief vector $\mathbf{b}$ is used, where: 
+
+\[
+\mathbf{b} = [[b_{0_{0}}, b_{0_{1}}, \ldots, b_{0_{22}}], \ldots, [b_{22_{0}}, b_{22_{1}}, \ldots, b_{22_{22}}]]
+\]
+
+The \textbf{signal} $\mathbf{s^0}$ and the \textbf{decision} $\mathbf{d_0}$ chosen by the agent is given by:
+
+\begin{equation*}
+\label{eq:zero-order-signal}
+\begin{aligned}
+    s^0 = \arg\max_s \sum_{i=0}^{22} b_{s_i}, \quad i = 0, 1, \ldots, 22. \\
+    d_0 = \arg\max_d b_{{s^0}_d}, \quad d = 0, 1, \ldots, 22.
+\end{aligned}
+\end{equation*}
+
+The agent decides whether or not to \textbf{update} for action $\mathbf{a}$ as follows: 
+
+\begin{equation}
+\text{{update}}(a) \rightarrow \begin{cases}
+\text{{yes}}, & \text{{if }} d_0 = (a + 1) \mod 23 \\
+\text{{no}}, & \text{{otherwise}}
+\end{cases}
+\end{equation}
+
+After that, the update process is the same as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the sub-vector $\mathbf{b_{s^0}}$ is used.
+
+\subsubsubsection{2.2.1.2}{First Order Signaling Agent}
+
+The first order agent employs a similar but slightly more different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{s^0}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
+
+\begin{equation*}
+\begin{aligned}
+    s^1 = \begin{cases}
+        \text{{random\_choice()}}, & \text{{if }} \text{{check\_epsilon()}} \\
+        s^0, & \text{{otherwise}}
+    \end{cases} \\
+    d_1 = \arg\max_d b_{{s^1}_d}, \quad d = 0, 1, \ldots, 22. \qquad
+\end{aligned}
+\end{equation*}
+
+The \textbf{update} process is the same as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the sub-vector $\mathbf{b_{s^1}}$ is used.
+
+%\subsubsubsection{2.2.1.2}{Second Order Signaling Agent}
+
+(\textbf{Will add Second Order Signaling Agent explanation here})
+\subsubsection{Receiving Agents}
+(\textbf{Will add receiving agents' descriptions here}
+%\subsubsubsection{2.2.2.1}{Zero Order Receiving Agent}
+%\subsubsubsection{2.2.2.2}{First Order Receiving Agent}
+%\subsubsubsection{2.2.2.3}{Second Order Receiving Agent}
+
+\subsubsection{Simulation}
+
+The signaling simulation will have a total of 11 different initial population configurations to be simulated. These population configurations are chosen specifically because for each ToM order it again investigates the effects listed for the signaling simulation, but also the effects of scenarios in which there are more signaling agents than receiving agents, and vice versa, based on the default order population of the simulation (i.e. the first row of \hyperref[tab:reg-population-table]{Table 2.1}). The ratio of difference for the scenarios with more signaling agents than receiving agents is 30:70 and for the scenarios with more receiving agents it's 70:30. The population configurations are like described below:
+
+\begin{itemize}
+    \item Order-wise, the initial 7 scenarios from \hyperref[tab:reg-population-table]{Table 2.1} are exactly the same, with each order being divided into half for signaling and receiving agents.
+    \item The other 4 scenarios are with the order configuration of $\{33,33,33\}$ but with the signaling agents being 70\% and 90\% of the population and the receiving agents being 30\% and 10\% of the population, and vice versa.
+\end{itemize}
+
+
+Throughout the simulation, the behavior of the agents will be observed and recorded. This data will include the signals sent by the signaling agents, the actions chosen by all agents, and the payoffs received by each agent. The data will be analyzed, for each simulation individually but also inter-simulation, to determine how the inclusion of signaling in the Mod Game affects the behavior of Theory of Mind agents. The results will be compared to the findings of \cite{de2013much} and \cite{veltman2019training} to evaluate the effect on signaling on emergent agent behaviour.
