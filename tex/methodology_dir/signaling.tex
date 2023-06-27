@@ -61,7 +61,7 @@ The \textbf{update} process is the same as the \hyperref[eq:zero-order-update]{N
 
 \subsubsubsection{2.2.1.2}{Second Order Signaling Agent}
 
-The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{decide}, but without the modulo operation on the lower order signal $\mathbf{s^l}$.
+The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$.
 
 \subsubsection{Receiving Agents}
 
@@ -81,8 +81,7 @@ on this vector, which is re-initialised every round, the agent performs the same
 \mathbf{b_c} = [[b_{c_{0_{0}}}, b_{c_{0_{1}}}, \ldots, b_{c_{0_{22}}}], \ldots, [b_{c_{22_{0}}}, b_{c_{22_{1}}}, \ldots, b_{c_{22_{22}}}]]
 \]
 
-The \textbf{decide} process given by, where $\psi$ represents the zero order signal belief for the round:
-
+The \textbf{decide} process is given by, where $\psi$ represents the zero order signal belief for the round:
 
 \begin{equation*}
 \begin{aligned}
@@ -104,6 +103,9 @@ the following calculation is used:
 \end{equation*}
 
 where $a_j$ represents an action from the actions list for that round.
+
+%\subsubsubsection{2.2.2.2}{First Order Receiving Agent}
+%\subsubsubsection{2.2.2.3}{Second Order Receiving Agent}
 
 \subsubsection{Simulation}
 
