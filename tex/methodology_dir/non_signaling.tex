@@ -9,19 +9,20 @@ The \textbf{decide} and \textbf{update} processes are performed differently for 
 
 \subsubsection{Zero Order Theory of Mind Agent}
 
-The Zero Order Theory of Mind agent is the simplest agent in the simulation. It does not have any Theory of Mind, and thus does not model the other agents in the simulation. It simply chooses an action based on its own 1-dimensional belief vector, which is updated based on the actions of the other agents in the simulation. The \textbf{decide} function can be described as follows:
+The Zero Order Theory of Mind agent is the simplest agent in the simulation. It does not have any Theory of Mind, and tries to model the other agents as simple as possible through a 1-dimensional belief vector that represents the agent's belief in most common action chosen by the other agents. It simply uses this vector to choose an action and update its beliefs. The \textbf{decide} function can be described as follows:
 
-Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
+Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in an opponent choosing action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
 
 \[
 i^* = \arg\max_i b_i, \quad i = 0, 2, \ldots, 22.
 \]
 
-To incorporate exploration, a random action is chosen with probability $\epsilon$ using the epsilon-greedy strategy. The function employs the check\_epsilon function to determine if a random choice should be made:
+To incorporate exploration, a random action is chosen with probability $\epsilon$ using the epsilon-greedy strategy. The function employs the check\_epsilon function to determine if a random choice should be made. The zero order decision $d_0$ is then given by:
 
+\label{eq:zero-order-decide}
 \[
 \begin{aligned}
-\text{{decide}} =
+d_0 =
 \begin{cases}
 \text{{random\_choice()}}, & \text{{if }} \text{{check\_epsilon()}} \\
 i^* + 1 \mod 23, & \text{{otherwise}}
@@ -55,13 +56,13 @@ b_{a_{j}} & = b_{a_{j}} + \text{{LEARNING\_SPEED}},
 \end{aligned}
 \]
 
-where $a_j$ represents an action from the actions list for that round. This process is repeated for each action in the actions list. The update equation ensures that the belief corresponding to the chosen action is increased by the predefined learning speed $\text{{LEARNING\_SPEED}}$, while the other beliefs are scaled down proportionally.
+where $a_j$ represents an action from the list $\mathbf{a}$ that represents the list of actions of the other agents in that round. This process is repeated for each action in the actions list. One notable feature of this update equation is that it is performed sequantially according to the initialization order of the agents, so the order of the agents can affect the beliefs of the agents. The update equation ensures that the belief corresponding to the chosen action is increased by the predefined learning speed $\text{{LEARNING\_SPEED}}$, while the other beliefs are scaled down proportionally.
 
 \subsubsection{First Order Theory of Mind Agent}
 
-The First Order Theory of Mind agent is a more complex agent than the Zero Order Theory of Mind agent. It models the other agents in the simulation as Zero Order Theory of Mind agents, uses that model in deciding and updating. 
+The First Order Theory of Mind agent is a more complex agent than the Zero Order Theory of Mind agent. It models the other agents in the simulation as Zero Order Theory of Mind agents, uses that model in deciding and updating. They, like the zero order agents, have a fixed order Theory of Mind
 
-The \textbf{decide} function of the First Order Theory of Mind Agent models the decision-making process of a lower-order agent (Zero order Theory of Mind Agent) and acts greedily based on that model. First, the function invokes the \textbf{decide} function of the lower-order agent, which determines the action the lower-order agent would choose based on its beliefs and decision-making strategy. Let $\mathbf{d_0}$ represent the decision made by the lower-order agent. Next, the function makes its decision $\mathbf{d_1}$ by applying a greedy strategy based on the lower-order decision:
+The \textbf{decide} function of the First Order Theory of Mind Agent models the decision-making process of a lower-order agent (Zero order Theory of Mind Agent) and acts greedily based on that model. First, the function invokes the \textbf{decide} function of the lower-order agent, which determines the action the lower-order agent would choose based on its beliefs and decision-making strategy. Next, the function makes its decision $\mathbf{d_1}$ by applying a greedy strategy based on the lower-order decision \hyperref[eq:zero-order-decide]{$\mathbf{d_0}$}:
 
 \[
 d_1 = (d_0 + 1) \mod 23.
@@ -105,30 +106,30 @@ d_2 = (d_l + 1) \mod 23.
 \]
 
 
-The \textbf{update} function of the Second Order Theory of Mind Agent updates the beliefs of the zero order, first order, and second order agents based on the chosen action. First, the function retrieves the decisions made by the zero order and first order agents using their respective \textbf{decide} functions. Let $\mathbf{d_0}$ and $\mathbf{d_2}$ represent the zero order and first order decisions, respectively. The higher order decisions $\mathbf{d_3}$ and $\mathbf{d_4}$ are calculated using the equations:
+The \textbf{update} function of the Second Order Theory of Mind Agent updates the beliefs of the zero order, first order, and second order agents based on the chosen action. First, the function retrieves the decisions made by the zero order and first order agents using their respective \textbf{decide} functions. The higher order decisions $\mathbf{d_{h_0}}$ and $\mathbf{d_{h_1}}$ are calculated using the equations:
 
 \[
-d_3 = (d_0 + 1) \mod 23, \quad d_4 = (d_2 + 1) \mod 23.
+d_{h_0} = d_1, \quad d_{h_1} = (d_1 + 1) \mod 23.
 \]
 
-Next, the function updates the beliefs of the zero order and first order agents by invoking their respective \textbf{update} functions. The function then updates the order beliefs vector based on the chosen action. If the chosen action matches either the zero order higher decision $\mathbf{d_3}$ or the first order higher decision $\mathbf{d_4}$, the order beliefs $\mathbf{b_o}$ are updated as follows:
+Next, the function updates the beliefs of the zero order and first order agents by invoking their respective \textbf{update} functions. The function then updates the order beliefs vector based on the chosen action. If the chosen action matches either the zero order higher decision $\mathbf{d_{h_0}}$ or the first order higher decision $\mathbf{d_{h_1}}$, the order beliefs $\mathbf{b_o}$ are updated as follows:
 
-Let $a$ be the chosen action. The sum of the order beliefs is calculated as $s = b_0 + b_1$, and the value of $s$ is used to calculate an accumulation factor $f$:
+Let $a$ be the chosen action. The sum of the order beliefs is calculated as $s = b{o_0} + b{o_1}$, and the value of $s$ is used to calculate an accumulation factor $f$:
 
 \[
 f = \frac{{1.0 - \text{{LEARNING\_SPEED}}}}{s}.
 \]
 
-The belief values in the order beliefs vector are scaled down by multiplying each belief $b_i$ by the accumulation factor $f$. If $a$ matches the zero order higher decision $\mathbf{d_3}$, the belief in the majority of zero order agents is updated by:
+The belief values in the order beliefs vector are scaled down by multiplying each belief $b{o_i}$ by the accumulation factor $f$. If $a$ matches the zero order higher decision $\mathbf{d_{h_0}}$, the belief in the majority of zero order agents is updated by:
 
 \[
-b_0 = b_0 + \text{{LEARNING\_SPEED}}.
+b{o_0} = b{o_0} + \text{{LEARNING\_SPEED}}.
 \]
 
-Otherwise, if $a$ matches the first order higher decision $\mathbf{d_4}$, the belief in the majority of first order agents is updated by:
+Otherwise, if $a$ matches the first order higher decision $\mathbf{d_{h_1}}$, the belief in the majority of first order agents is updated by:
 
 \[
-b_1 = b_1 + \text{{LEARNING\_SPEED}}.
+    b{o_1} = b{o_1} + \text{{LEARNING\_SPEED}}.
 \]
 
 \subsubsection{Simulation}
