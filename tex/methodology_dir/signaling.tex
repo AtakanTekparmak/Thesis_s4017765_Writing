@@ -19,16 +19,16 @@ All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), 
 The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the belief vector $\mathbf{b}$ is used, where: 
 
 \[
-\mathbf{b} = [[b_{0_{0}}, b_{0_{1}}, \ldots, b_{0_{22}}], \ldots, [b_{22_{0}}, b_{22_{1}}, \ldots, b_{22_{22}}]]
+\mathbf{b_{\zeta}} = [[b_{\zeta_{0_{0}}}, \ldots, b_{\zeta_{0_{22}}}], \ldots, [b_{\zeta_{22_{0}}}, \ldots, b_{\zeta_{22_{22}}}]]
 \]
 
-The \textbf{signal} $\mathbf{s^0}$ and the \textbf{decision} $\mathbf{d_0}$ chosen by the agent is given by:
+The \textbf{signal} $\phi$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\phi$ is given by: 
 
 \begin{equation*}
 \label{eq:zero-order-signal}
 \begin{aligned}
-    s^0 = \arg\max_s \sum_{i=0}^{22} b_{s_i}, \quad i = 0, 1, \ldots, 22. \\
-    d_0 = \arg\max_d b_{{s^0}_d}, \quad d = 0, 1, \ldots, 22.
+    \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_i}, \quad i = 0, 1, \ldots, 22. \\
+    d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
 \end{aligned}
 \end{equation*}
 
