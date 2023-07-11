@@ -12,20 +12,21 @@ Even though not mentioned in the itemized list above, the decision and update pr
 
 \subsubsection{Signaling Agents}
 
-All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), in which the first dimension represents and holds information for signals, and the second dimension represents and holds information for actions. In the decision process for all signaling agents, the agent uses the sub-array of shape (23,1), indexed by the signal, to decide on an action. How each order of ToM deals with the signal, decision and update processes are explained in the following sections.
+All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), in which the first dimension represents and holds information for signals, and the second dimension represents and holds information for actions given the signal. In the decision process for all signaling agents, the agent uses the sub-array of shape (23,1), indexed by the signal, to decide on an action. How each order of ToM deals with the signal, decision and update processes are explained in the following sections.
 
 \subsubsubsection{2.2.1.1}{Zero Order Signaling Agent}
 
-The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the belief vector $\mathbf{b}$ is used, where: 
+The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the belief vector $\mathbf{b_{\zeta}}$ is used, where: 
 
 \[
 \mathbf{b_{\zeta}} = [[b_{\zeta_{0_{0}}}, \ldots, b_{\zeta_{0_{22}}}], \ldots, [b_{\zeta_{22_{0}}}, \ldots, b_{\zeta_{22_{22}}}]]
 \]
 
-The \textbf{signal} $\phi$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\phi$ is given by: 
+The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\mathbf{\phi}$ is given by: 
 
 \begin{equation*}
 \label{eq:zero-order-signal}
+\label{eq:zero-order-decide}
 \begin{aligned}
     \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_i}, \quad i = 0, 1, \ldots, 22. \\
     d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
@@ -45,7 +46,7 @@ After that, the update process is the same as the \hyperref[eq:zero-order-update
 
 \subsubsubsection{2.2.1.2}{First Order Signaling Agent}
 
-The first order agent employs a similar but slightly more different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{s^0}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
+The first order agent employs a similar but slightly different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{s^0}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
 
 \begin{equation*}
 \begin{aligned}
