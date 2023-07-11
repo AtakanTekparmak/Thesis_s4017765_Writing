@@ -1,2 +1,12 @@
 # TODO List
 TODO.md
+
+# Python stuff
+*.pyc
+
+# Python venv stuff
+venv/
+
+# Testing stuff
+test/*
+test.*
