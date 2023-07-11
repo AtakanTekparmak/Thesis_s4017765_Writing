@@ -24,14 +24,14 @@ The zero order agent employs a simple greedy strategy for signaling and deciding
 
 The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\mathbf{\phi}$ is given by: 
 
-\begin{equation*}
+\begin{equation}
 \label{eq:zero-order-signal}
 \label{eq:zero-order-decide}
 \begin{aligned}
     \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_i}, \quad i = 0, 1, \ldots, 22. \\
     d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
 \end{aligned}
-\end{equation*}
+\end{equation}
 
 The agent decides whether or not to \textbf{update} for action $\mathbf{a}$ as follows: 
 
@@ -46,7 +46,7 @@ After that, the update process is the same as the \hyperref[eq:zero-order-update
 
 \subsubsubsection{2.2.1.2}{First Order Signaling Agent}
 
-The first order agent employs a similar but slightly different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{s^0}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
+The first order agent employs a similar but slightly different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{\phi}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
 
 \begin{equation*}
 \begin{aligned}
@@ -62,7 +62,7 @@ The \textbf{update} process is the same as the \hyperref[eq:zero-order-update]{N
 
 \subsubsubsection{2.2.1.2}{Second Order Signaling Agent}
 
-The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$.
+The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{Non-signaling Second Order decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$.
 
 \subsubsection{Receiving Agents}
 
@@ -76,7 +76,8 @@ The zero order receiving agent employs a simple greedy strategy for processing t
 \mathbf{b_s} = [b_{0}, b_{1}, \ldots, b_{22}]
 \]
 
-on this vector, which is re-initialised every round, the agent performs the same \textbf{update} process as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the vector $\mathbf{b_s}$ is used. For the decide and update processes the connected beliefs vector $\mathbf{b_c}$ is used, where:
+on this vector, which is re-initialised every round, the agent performs the same \textbf{update} process as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the vector $\mathbf{b_s}$ is used. The vector is re-initialised because it represents the agent's beliefs about the most dominant signal in the current round, and the agent needs to re-evaluate this belief every round. The learning rate for the update operations of this vector is 4 times the simulation-wide learning rate $\alpha = 0.1$.
+For the decide and update processes the connected beliefs vector $\mathbf{b_c}$ is used, where:
 
 \[
 \mathbf{b_c} = [[b_{c_{0_{0}}}, b_{c_{0_{1}}}, \ldots, b_{c_{0_{22}}}], \ldots, [b_{c_{22_{0}}}, b_{c_{22_{1}}}, \ldots, b_{c_{22_{22}}}]]
