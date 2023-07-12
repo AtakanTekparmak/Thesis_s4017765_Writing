@@ -9,12 +9,6 @@
 
 ### Results
 
-* [ ] Add explanation to results
-    * [ ] Add explanation to results for the Signaling Simulation
-        * [ ] Add explanation to results for the Second Order Over/Under Abundance
-        * [ ] Add explanation results for signaling agents over/under abundance 70/30 
-        * (**OPTIONAL**) [ ] Add explanation results for signaling agents over/under abundance 90/10
-* [ ] Decide on whether to include the results for the 90/10 signaling agents over/under abundance
 * [ ] Revise Results
 * [ ] Deal with the layout and placing of the tables and figures
 
