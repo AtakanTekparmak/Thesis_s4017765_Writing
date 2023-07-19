@@ -8,7 +8,7 @@ In the signaling simulation, the agents are divided into two groups: the signali
     \item The agent beliefs are updated
 \end{enumerate}
 
-Even though not mentioned in the itemized list above, the decision and update processes for signaling and receving agents are different. They do resemble in certain aspects as similar learning algorithms were used for conistency, but the differences are significant enough to warrant a separate explanation, which will be done in the following subsections.
+Even though not mentioned in the itemized list above, the decision and update processes for signaling and receiving agents are different. They do resemble in certain aspects as similar learning algorithms were used for consistency, but the differences are significant enough to warrant a separate explanation, which will be done in the following subsections.
 
 \subsubsection{Signaling Agents}
 
@@ -26,7 +26,6 @@ The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, wh
 
 \begin{equation}
 \label{eq:zero-order-signal}
-\label{eq:zero-order-decide}
 \begin{aligned}
     \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_i}, \quad i = 0, 1, \ldots, 22. \\
     d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
@@ -108,7 +107,7 @@ where $a_j$ represents an action from the actions list for that round.
 
 \subsubsubsection{2.2.2.2}{First Order Receiving Agent}
 
-The first order receiving agent is a lot like the non-signalling first order agent, in the sense that it simply uses a model of a zero order agent to operate, with the sole addition of having a \textbf{process\_signal} process, where the \textvf{process\_signal} process of the zero order agent is called. This agent is essentially a superset of the non-signaling first order agent, with the extra ability to process signals.
+The first order receiving agent is a lot like the non-signalling first order agent, in the sense that it simply uses a model of a zero order agent to operate, with the sole addition of having a \textbf{process\_signal} process, where the \textbf{process\_signal} process of the zero order agent is called. This agent is essentially a superset of the non-signaling first order agent, with the extra ability to process signals.
 
 \subsubsubsection{2.2.2.3}{Second Order Receiving Agent}
 

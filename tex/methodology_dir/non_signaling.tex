@@ -11,7 +11,7 @@ The \textbf{decide} and \textbf{update} processes are performed differently for 
 
 The Zero Order Theory of Mind agent is the simplest agent in the simulation. It does not have any Theory of Mind, and tries to model the other agents as simple as possible through a 1-dimensional belief vector that represents the agent's belief in most common action chosen by the other agents. It simply uses this vector to choose an action and update its beliefs. The \textbf{decide} function can be described as follows:
 
-Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in an opponent choosing action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
+Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in any given opponent choosing action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
 
 \[
 i^* = \arg\max_i b_i, \quad i = 0, 2, \ldots, 22.
@@ -51,7 +51,7 @@ The learning rate $\alpha$ represents the proportion of belief update for each a
 
 \[
 \begin{aligned}
-b_i & = b_i \times \alpha, \quad i = 0, 1, \ldots, 22, \quad i \neq a_j, \\
+b_i & = b_i \times \alpha, \quad i = 0, 1, \ldots, 22, \quad\\
 b_{a_{j}} & = b_{a_{j}} + \text{{LEARNING\_SPEED}},
 \end{aligned}
 \]
@@ -68,7 +68,7 @@ The \textbf{decide} function of the First Order Theory of Mind Agent models the 
 d_1 = (d_0 + 1) \mod 23.
 \]
 
-Because the First Order agent using a Zero Order agent to decide, the \textbf{update} procedure is just updating that Zero Order agent, as described in the previous subsection.
+Because the First Order agent using a Zero Order agent to decide, the \textbf{update} procedure is just updating that Zero Order agent, as described in the previous subsection. It should be noted that unlike \cite{veltman2019training} first order agents are fixed to the first order of thinking, and cannot reason in a zero order way.
 
 \subsubsection{Second Level Theory of Mind Agent}
 
