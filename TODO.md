@@ -3,9 +3,9 @@
 ## THESIS
 
 
-### Introduction
+### Methodology
 
-* [ ] (**OPTIONAL**) Add reasoning/reference for agent-based modeling (https://scholar.google.com/scholar_lookup?title=Agent-based%20computational%20models%20and%20generative%20social%20science&publication_year=1999&author=J.%20Epstein) and (https://www.sciencedirect.com/science/article/pii/S0004370213000441)
+* [ ] Deal with latest Harmen remarks on methodology (page 6)
 
 ### Results
 
