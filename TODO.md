@@ -14,9 +14,14 @@
 
 ### Discussion
 * [ ] Add Discussion
-    * [ ] Add Discussion for the Regular Simulation
     * [ ] Add Discussion for the Signaling Simulation
+        * [ ] Zero order trends
+        * [ ] First order trends
+        * [ ] Second order trends
+        * [ ] Signaling/Receiving over/under-abundance discussion
     * [ ] Add Discussion for the Regular vs Signaling Simulation
+        * [ ] Order wise discussion
+        * [ ] Post signaling discussion discussion
 * [ ] Mention how results are similar to the Harmen's study on Tacit Communication Game and Higher Order ToM (https://www.ai.rug.nl/~verheij/publications/pdf/bica2015.pdf)
 * [ ] Revise Discussion
 

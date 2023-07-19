@@ -9,5 +9,10 @@ The only exception is the $150_{0}$/$75_{1}$/$75_{2}$ scenario, in which there a
 The second order agents are not as sensitive to population changes, but they also prefer more zero order agents than more first order agents, with them having higher AOAS in scenarios with more zero order agents.
 
 These results indicate that without signaling, unless there is a significant (around $50\%$) increase in the number of zero order agents, higher order agents, in general, perform better than lower order agents (with the highest order being 2). The average agent score (across all orders) for 300 agents and 1000 epochs is $\mathbf{63.115
-}$ for the default equal population, and $\mathbf{78.52}$ for the $150_{0}$/$75_{1}$/$75_{2}$ scenario, which has the highest average.
+}$ for the default equal population, and $\mathbf{78.517}$ for the $150_{0}$/$75_{1}$/$75_{2}$ scenario, which has the highest average.
 
+\subsection{The Signaling Simulation}
+
+In the signaling simulation, the picture is not too different from the regular simulation if analysed from an order-wise perspective. In all of the scenarios, the first order agents collectively perform better than zero order agents, and second order agents collectively perform better than first order agents, with no exceptions. This is expected, as also seen in the regular simulation and in previous work, higher order agents performe better than lower order agents, with the highest order being 2.
+
+The main difference between the regular and signaling simulations is the score differences. In the regular simulation, in all scenarios, at least one of the score differences (either $\mathbf{sd^0_1}$ or $\mathbf{sd^1_2}$) is higher than $\mathbf{48}$ whereas in the signaling simulation, in 8 out of 9 scenarios, both score differences are lower than $\mathbf{48}$. The only exception is the $60_{s_{0}}/60_{s_{1}}/30_{s_{2}}/60_{r_{0}}/60_{r_{1}}/30_{r_{2}}$ scenario where $\mathbf{sd^0_1 = 48.621}$. This indicates a more balanced distribution of scores between the orders of ToM in the signaling simulation, from a higher, order-wise perspective.
