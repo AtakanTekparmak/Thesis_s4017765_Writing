@@ -27,12 +27,12 @@ The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, wh
 \begin{equation}
 \label{eq:zero-order-signal}
 \begin{aligned}
-    \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_i}, \quad i = 0, 1, \ldots, 22. \\
+    \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_{s_i}}, \quad i = 0, 1, \ldots, 22. \\
     d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
 \end{aligned}
 \end{equation}
 
-The agent decides whether or not to \textbf{update} for action $\mathbf{a}$ as follows: 
+For each action $\mathbf{a}$ taken by the other agents during that epoch, the agent employs a process to decide whether or not the action should be considered in the update procedure, outlined as follows: 
 
 \begin{equation}
 \text{{update}}(a) \rightarrow \begin{cases}
