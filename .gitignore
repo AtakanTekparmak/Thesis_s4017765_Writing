@@ -1,5 +1,6 @@
 # Python stuff
 *.pyc
+*.py 
 
 # Python venv stuff
 venv/
@@ -7,3 +8,6 @@ venv/
 # Testing stuff
 test/*
 test.*
+
+# Merged tex file
+merged.tex
