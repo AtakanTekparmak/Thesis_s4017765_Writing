@@ -14,7 +14,7 @@ The Zero Order Theory of Mind agent is the simplest agent in the simulation. It 
 Let $\mathbf{b} = [b_0, b_1, \ldots, b_{22}]$ be the belief vector, where $b_i$ represents the belief in any given opponent choosing action $i$. The function iterates through the beliefs and finds the index $i^*$ corresponding to the highest belief:
 
 \[
-i^* = \arg\max_i b_i, \quad i = 0, 2, \ldots, 22.
+i^* = \arg\max_i b_i
 \]
 
 To incorporate exploration, a random action is chosen with probability $\epsilon$ using the epsilon-greedy strategy. The function employs the check\_epsilon function to determine if a random choice should be made. The zero order decision $d_0$ is then given by:
@@ -56,7 +56,7 @@ b_{a_{j}} & = b_{a_{j}} + \text{{LEARNING\_SPEED}},
 \end{aligned}
 \]
 
-where $a_j$ represents an action from the list $\mathbf{a}$ that represents the list of actions of the other agents in that round. This process is repeated for each action in the actions list. One notable feature of this update equation is that it is performed sequantially according to the initialization order of the agents, so the order of the agents can affect the beliefs of the agents. The update equation ensures that the belief corresponding to the chosen action is increased by the predefined learning speed $\text{{LEARNING\_SPEED}}$, while the other beliefs are scaled down proportionally.
+where $a_j$ represents an action from the list $\mathbf{a}$ that represents the list of actions of the other agents in that round. This process is repeated for each action in the actions list. One notable feature of this update equation is that it is performed sequentially according to the initialization order of the agents, so the order of the agents can affect the beliefs of the agents. The update equation ensures that the belief corresponding to the chosen action is increased by the predefined learning speed $\text{{LEARNING\_SPEED}}$, while the other beliefs are scaled down proportionally.
 
 \subsubsection{First Order Theory of Mind Agent}
 
@@ -72,7 +72,7 @@ Because the First Order agent using a Zero Order agent to decide, the \textbf{up
 
 \subsubsection{Second Level Theory of Mind Agent}
 
-The Second Order Theory of Mind agent is very similar to a First Order Theory of Mind agent, with the main difference being that it has another dimension of reasoning, namely it's beliefs on which order of Theory of Mind is more present in the population, Zero Order or First Order. It then uses this belief to decide which lower order agent to model and act upon. 
+The Second Order Theory of Mind agent is very similar to a First Order Theory of Mind agent, with the main difference being that it has another dimension of reasoning, namely its beliefs on which order of Theory of Mind is more present in the population, Zero Order or First Order. It then uses this belief to decide which lower order agent to model and act upon. 
 
 The \textbf{decide} function of the Second Order Theory of Mind Agent implements a greedy decision-making process based on models of the other agents that it has. First, the function selects an order that it believes to be more present in the equation. Let $\mathbf{b_o} = [b_{o_{1}}, b_{o_{2}}]$ be the order belief vector. Then, the intermediary order-decision $o^*$ is:
 
@@ -155,6 +155,6 @@ The non-signaling simulation will have a total of 7 different initial population
 \multicolumn{1}{c|}{40}                                                 & \multicolumn{1}{c|}{40}                                                  & 20                                                                       \\
    & &                
 \end{tabular}
-\caption{The inital population configurations listed by how much each order of ToM is present in the population percentage-wise}
+\caption{The initial population configurations listed by how much each order of ToM is present in the population percentage-wise}
 \label{tab:reg-population-table}
 \end{table}
