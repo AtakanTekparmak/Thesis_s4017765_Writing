@@ -53,7 +53,7 @@ The first order agent employs a similar but slightly different strategy for sign
 \end{aligned}
 \end{equation*}
 
-In the \textbf{update} process, first the zero order agent model $\mathbf{m^0}$ is updated for all observed actions $\mathbf{a_j}$. Then, for all indexes $\mathbf{i}$ and $\mathbf{j}$ in the signal tendency matrix where $0 \leq i, j \leq 22$, the following algorithm is employed for update, where $\mathbf{l_s}$ denotes the LEARNING\_SPEED:
+In the \textbf{update} process, first the zero order agent model $\mathbf{m^0}$ is updated for all observed actions $\mathbf{a_j}$, but with $k = (a_j + 2)$ instead of $(a_j + 1)$ on the right hand side of the equation. Then, for all indexes $\mathbf{i}$ and $\mathbf{j}$ in the signal tendency matrix where $0 \leq i, j \leq 22$, the following algorithm is employed for update, where $\mathbf{l_s}$ denotes the LEARNING\_SPEED:
 
 \begin{equation*}
 \begin{aligned}
