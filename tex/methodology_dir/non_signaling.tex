@@ -74,7 +74,7 @@ Because the First Order agent using a Zero Order agent to decide, the \textbf{up
 
 The Second Order Theory of Mind agent is very similar to a First Order Theory of Mind agent, with the main difference being that it has another dimension of reasoning, namely its beliefs on which order of Theory of Mind is more present in the population, Zero Order or First Order. It then uses this belief to decide which lower order agent to model and act upon. 
 
-The \textbf{decide} function of the Second Order Theory of Mind Agent implements a greedy decision-making process based on models of the other agents that it has. First, the function selects an order that it believes to be more present in the equation. Let $\mathbf{b_o} = [b_{o_{1}}, b_{o_{2}}]$ be the order belief vector. Then, the intermediary order-decision $o^*$ is:
+The \textbf{decide} function of the Second Order Theory of Mind Agent implements a greedy decision-making process based on models of the other agents that it has. First, the function selects an order that it believes to be more present in the population. Let $\mathbf{b_o} = [b_{o_{1}}, b_{o_{2}}]$ be the order belief vector. Then, the intermediary order-decision $o^*$ is:
 
 \[
 \begin{aligned}
@@ -106,15 +106,15 @@ d_2 = (d_l + 1) \mod 23.
 \]
 
 
-The \textbf{update} function of the Second Order Theory of Mind Agent updates the beliefs of the zero order, first order, and second order agents based on the chosen action. First, the function retrieves the decisions made by the first order agents using their \textbf{decide} functions. The higher order decisions $\mathbf{d_{h_0}}$ and $\mathbf{d_{h_1}}$ are calculated using the equations:
+The \textbf{update} function of the Second Order Theory of Mind Agent updates the order beliefs based on the observed actions. First, the function retrieves the decisions made by the first order agents using their \textbf{decide} functions. The higher order decisions $\mathbf{d_{h_0}}$ and $\mathbf{d_{h_1}}$ are calculated using the equations:
 
 \[
 d_{h_0} = d_1, \quad d_{h_1} = (d_1 + 1) \mod 23.
 \]
 
-Next, the function updates the beliefs of the zero order and first order agents by invoking their respective \textbf{update} functions. The function then updates the order beliefs vector based on the chosen action. If the chosen action matches either the zero order higher decision $\mathbf{d_{h_0}}$ or the first order higher decision $\mathbf{d_{h_1}}$, the order beliefs $\mathbf{b_o}$ are updated as follows:
+If the chosen action matches either the zero order higher decision $\mathbf{d_{h_0}}$ or the first order higher decision $\mathbf{d_{h_1}}$, the order beliefs $\mathbf{b_o}$ are updated as follows:
 
-Let $a$ be the chosen action. The sum of the order beliefs is calculated as $s = b_{o_0} + b_{o_1}$, and the value of $s$ is used to calculate an accumulation factor $f$:
+Let $a$ be the observed action. The sum of the order beliefs is calculated as $s = b_{o_0} + b_{o_1}$, and the value of $s$ is used to calculate an accumulation factor $f$:
 
 \[
 f = \frac{{1.0 - \text{{LEARNING\_SPEED}}}}{s}.
@@ -131,6 +131,8 @@ Otherwise, if $a$ matches the first order higher decision $\mathbf{d_{h_1}}$, th
 \[
     b_{o_1} = b_{o_1} + \text{{LEARNING\_SPEED}}.
 \]
+
+In all other cases, the order beliefs are not updated. Finally, the belief vector $\mathbf{b}$ is updated as described in Section 2.1.1.
 
 \subsubsection{Simulation}
 

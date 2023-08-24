@@ -1,4 +1,4 @@
-In the signaling simulation, the agents are divided into two groups: the signaling agents and the receiving agents. The signaling agents can signal any action (a number in the range $[0,22]$) to the receiving agents, on top of the ability to decide. The receiving agents can process transmitted signals from the signaling agents before deciding. There are five different processes performed in each round. In order, they are:
+In the signaling simulation, the agents are divided into two groups: the signaling agents and the receiving agents. The signaling agents can signal any action (a number in the range $[0,22]$) to the receiving agents, before deciding on an action to perform. The receiving agents can process transmitted signals from the signaling agents before deciding. There are five different processes performed in each round. In order, they are:
 
 \begin{enumerate}
     \item The signaling agents decide on a signal and transmit it
@@ -16,36 +16,32 @@ All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), 
 
 \subsubsubsection{2.2.1.1}{Zero Order Signaling Agent}
 
-The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the belief vector $\mathbf{b_{\zeta}}$ is used, where: 
+The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the signal tendency matrix $\mathbf{t}$, which is randomly initialised for each individual agent, is used. It should be noted that while the belief vector $\mathbf{b}$ used in by the regular agents as described in Section 2.1.1 represents the agent's belief in what the other agents will do in the next round, the signal tendency matrix $\mathbf{t}$ represents what the agent should do itself to maximise the point gain in the next round: 
 
 \[
-\mathbf{b_{\zeta}} = [[b_{\zeta_{0_{0}}}, \ldots, b_{\zeta_{0_{22}}}], \ldots, [b_{\zeta_{22_{0}}}, \ldots, b_{\zeta_{22_{22}}}]]
+\mathbf{t} = [[t_{0_{0}}, \ldots, t_{0_{22}}], \ldots, [t_{22_{0}}, \ldots, t_{22_{22}}]]
 \]
 
-The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\mathbf{\phi}$ is given by: 
+where $\mathbf{t_{i_{j}}}$ is the agent's tendency to signal action $\mathbf{i}$ and then perform action $\mathbf{j}$. The \textbf{signal} $\mathbf{\phi}$ and the \textbf{decision} $\mathbf{d_0}$, which is chosen by the agent using the signal $\mathbf{\phi}$ is given by: 
 
 \begin{equation}
 \label{eq:zero-order-signal}
 \begin{aligned}
-    \phi = \arg\max_s \sum_{i=0}^{22} b_{\zeta_{s_i}}, \quad i = 0, 1, \ldots, 22. \\
-    d_0 = \arg\max_d b_{\zeta_{\phi_d}}, \quad d = 0, 1, \ldots, 22.
+    \phi = \arg\max_s \sum_{i=0}^{22} t_{s_i}, \quad i = 0, 1, \ldots, 22. \\
+    d_0 = \arg\max_d t_{\phi_d}, \quad d = 0, 1, \ldots, 22.
 \end{aligned}
 \end{equation}
 
-For each action $\mathbf{a}$ taken by the other agents during that epoch, the agent employs a process to decide whether or not the action should be considered in the update procedure, outlined as follows: 
+After this, in the update part, when the agent observes the actions $\mathbf{a_j}$ that have been performed in the previous round, it updates its signal tendencies so that:
 
 \begin{equation}
-\text{{update}}(a) \rightarrow \begin{cases}
-\text{{yes}}, & \text{{if }} d_0 = (a + 1) \mod 23 \\
-\text{{no}}, & \text{{otherwise}}
-\end{cases}
+    t_{i_k} \leftarrow t_{i_k} + LEARNING\_SPEED
 \end{equation}
 
-After that, the update process is the same as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the sub-vector $\mathbf{b_{s^0}}$ is used.
-
+where $k = (a_j + 1) \mod 23$ is the action that would have gained a point from the observed action $\mathbf{a_j}$ in the previous round. This update is performed sequentially for each observed action $\mathbf{a_j}$, and for each signal $0 \leq i \leq 22$. Note, however, that the signal tendencies are not normalized. That is, the order in which updates are performed does not influence the outcome. 
 \subsubsubsection{2.2.1.2}{First Order Signaling Agent}
 
-The first order agent employs a similar but slightly different strategy for signaling and deciding. In both of them, the same belief vector $\mathbf{b}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{\phi}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
+The first order agent employs a similar but slightly different strategy for signaling and deciding. In both of them, the same signal tendency matrix $\mathbf{t}$ is used. The agent also has a zero order agent model $\mathbf{m^0}$, whose \textbf{signal} $\mathbf{\phi}$ (calculations given in \hyperref[eq:zero-order-signal]{Equation 2.1}) is used in the  signaling process. The \textbf{signal} $\mathbf{s^1}$ and the \textbf{decision} $\mathbf{d_1}$ chosen by the agent is given by:
 
 \begin{equation*}
 \begin{aligned}
@@ -53,15 +49,26 @@ The first order agent employs a similar but slightly different strategy for sign
         \text{{random\_choice()}}, & \text{{if }} \text{{check\_epsilon()}} \\
         s^0, & \text{{otherwise}}
     \end{cases} \\
-    d_1 = \arg\max_d b_{{s^1}_d}, \quad d = 0, 1, \ldots, 22. \qquad
+    d_1 = \arg\max_d t_{{s^1}_d}, \quad d = 0, 1, \ldots, 22. \qquad
 \end{aligned}
 \end{equation*}
 
-The \textbf{update} process is the same as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the sub-vector $\mathbf{b_{s^1}}$ is used.
+In the \textbf{update} process, first the zero order agent model $\mathbf{m^0}$ is updated for all observed actions $\mathbf{a_j}$. Then, for all indexes $\mathbf{i}$ and $\mathbf{j}$ in the signal tendency matrix where $0 \leq i, j \leq 22$, the following algorithm is employed for update, where $\mathbf{l_s}$ denotes the LEARNING\_SPEED:
+
+\begin{equation*}
+\begin{aligned}
+    t_{i_j} = \begin{cases}
+        t_{i_j} + l_s \cdot (1 - t_{i_j}), & \text{{if }} i = s^1 \, \& \, j = d_1 \\
+        t_{i_j} \cdot (1 - l_s), & \text{{otherwise}}
+    \end{cases}
+\end{aligned}
+\end{equation*}
+
+It's important to note that his has the effect of increasing the tendency $t_{{s^1}_{d_1}}$ of choosing the same signal $s^1$ and making the same decision $d^1$ again in the future.
 
 \subsubsubsection{2.2.1.2}{Second Order Signaling Agent}
 
-The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{Non-signaling Second Order decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$.
+The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{Non-signaling Second Order decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$. The second order signaling agent is different than the zero and first order signaling agents in the sense that it uses order beliefs $\mathbf{b_o}$ rather than tendencies $\mathbf{t}$, as this and the other second order agents in the study aim to understand which of the lower orders is more dominant in the population and act according to that.
 
 \subsubsection{Receiving Agents}
 
@@ -75,7 +82,7 @@ The zero order receiving agent employs a simple greedy strategy for processing t
 \mathbf{b_s} = [b_{0}, b_{1}, \ldots, b_{22}]
 \]
 
-on this vector, which is re-initialised every round, the agent performs the same \textbf{update} process as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the vector $\mathbf{b_s}$ is used. The vector is re-initialised because it represents the agent's beliefs about the most dominant signal in the current round, and the agent needs to re-evaluate this belief every round. The learning rate for the update operations of this vector is 4 times the simulation-wide learning rate $\alpha = 0.1$.
+on this vector, which is re-initialised every round, the agent performs the same \textbf{update} process as the \hyperref[eq:zero-order-update]{Non-signaling Zero Order Agent}, with the only difference being instead of $\mathbf{b}$, the vector $\mathbf{b_s}$ is used. The vector is re-initialised because it represents the agent's beliefs about the most dominant signal in the current round, and the agent needs to re-evaluate this belief every round. The learning rate for the update operations of this vector is 4 times the simulation-wide learning rate $LEARNING\_SPEED = 0.1$.
 For the decide and update processes the connected beliefs vector $\mathbf{b_c}$ is used, where:
 
 \[
