@@ -16,7 +16,7 @@ All signaling agents employ a 2-dimensional beliefs array of the shape (23,23), 
 
 \subsubsubsection{2.2.1.1}{Zero Order Signaling Agent}
 
-The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the signal tendency matrix $\mathbf{t}$, which is randomly initialised for each individual agent, is used. It should be noted that while the belief vector $\mathbf{b}$ used in by the regular agents as described in Section 2.1.1 represents the agent's belief in what the other agents will do in the next round, the signal tendency matrix $\mathbf{t}$ represents what the agent should do itself to maximise the point gain in the next round: 
+The zero order agent employs a simple greedy strategy for signaling and deciding. In both of them, the signal tendency matrix $\mathbf{t}$, which is randomly initialised for each individual agent, is used. It should be noted that while the belief vector $\mathbf{b}$ used by the regular agents as described in Section 2.1.1 represents the agent's belief in what the other agents will do in the next round, the signal tendency matrix $\mathbf{t}$ represents what the agent should do itself to maximise the point gain in the next round: 
 
 \[
 \mathbf{t} = [[t_{0_{0}}, \ldots, t_{0_{22}}], \ldots, [t_{22_{0}}, \ldots, t_{22_{22}}]]
@@ -53,7 +53,7 @@ The first order agent employs a similar but slightly different strategy for sign
 \end{aligned}
 \end{equation*}
 
-In the \textbf{update} process, first the zero order agent model $\mathbf{m^0}$ is updated for all observed actions $\mathbf{a_j}$, but with $k = (a_j + 2)$ instead of $(a_j + 1)$ on the right hand side of the equation. Then, for all indexes $\mathbf{i}$ and $\mathbf{j}$ in the signal tendency matrix where $0 \leq i, j \leq 22$, the following algorithm is employed for update, where $\mathbf{l_s}$ denotes the LEARNING\_SPEED:
+In the \textbf{update} process, first the zero order agent model $\mathbf{m^0}$ is updated for all observed actions $\mathbf{a_j}$, but with $k = (a_j + 2)$ instead of $(a_j + 1)$ on the right hand side of the equation. This change in k is because the first order agent expects other agents to update their beliefs in response to the observed actions. Then, for all indexes $\mathbf{i}$ and $\mathbf{j}$ in the signal tendency matrix where $0 \leq i, j \leq 22$, the following algorithm is employed for update, where $\mathbf{l_s}$ denotes the LEARNING\_SPEED:
 
 \begin{equation*}
 \begin{aligned}
@@ -68,7 +68,7 @@ It's important to note that his has the effect of increasing the tendency $t_{{s
 
 \subsubsubsection{2.2.1.2}{Second Order Signaling Agent}
 
-The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{Non-signaling Second Order decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$. The second order signaling agent is different than the zero and first order signaling agents in the sense that it uses order beliefs $\mathbf{b_o}$ rather than tendencies $\mathbf{t}$, as this and the other second order agents in the study aim to understand which of the lower orders is more dominant in the population and act according to that.
+The second order signaling agent is a lot like a regular second order agent, with the lower order signaling agent models $\mathbf{m^0}$ and $\mathbf{m^1}$, and the order beliefs $\mathbf{b_o}$. The \textbf{decide} and \textbf{update} processes are the same as the \hyperref[eq:second-order-decide]{Non-signaling Second Order Agent}, with the only difference being the extra \textbf{signal} $\mathbf{s^2}$ chosen by the agent, given by the same algorithm for \textbf{Non-signaling Second Order decide}, but without the modulo operation on the lower order signal $\mathbf{s_l}$. The second order signaling agent is different than the zero and first order signaling agents in the sense that it uses order beliefs $\mathbf{b_o}$ rather than tendencies $\mathbf{t}$, as this and the other second order agents in the study aim to understand which of the lower orders is more dominant in the population and act according to that. The order beliefs allow the second order agent to act as if it were a first order agent, while also keeping the overall consistency of second order agents using order beliefs throughout the study as their results will be compared down the line.
 
 \subsubsection{Receiving Agents}
 
